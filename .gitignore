@@ -1,0 +1,4 @@
+target/
+.vagrant/
+*.jar
+*.war

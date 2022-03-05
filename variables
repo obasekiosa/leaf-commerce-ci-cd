@@ -1,0 +1,12 @@
+CATALINA_HOME = /usr/share/tomcat7
+CATALINA_HOME/lib
+
+sudo cp /vagrant/online_store.cfg /usr/local/nagios/etc/objects/
+sudo systemctl restart nagios.service
+
+cfg_file=/usr/local/nagios/etc/objects/online_store.cfg
+
+
+/etc/mysql/mysql.conf.d/mysqld.cnf
+
+sudo apt-get install mailutils
