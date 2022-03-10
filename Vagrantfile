@@ -3,6 +3,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/xenial64"
 
+  config.librarian_puppet.puppetfile_dir = "librarian"
+
   config.vm.provision "shell", inline: "sudo apt-get update && sudo apt-get -y install puppet"
 
   config.vm.define :db do |db_config|
@@ -10,9 +12,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     db_config.vm.network :private_network, :ip => "192.168.33.10"
 
     db_config.vm.provision "puppet" do |puppet|
+      puppet.module_path = "modules"
       puppet.manifest_file = "db.pp"
     end
-
 
   end
 
@@ -21,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web_config.vm.network :private_network, :ip => "192.168.33.12"
 
     web_config.vm.provision "puppet" do |puppet|
+      puppet.module_path = "modules"
       puppet.manifest_file = "web.pp"
     end
 

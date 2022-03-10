@@ -25,7 +25,20 @@
     <!--
     <Manager pathname="" />
     -->
-    <Resource name="jdbc/web" auth="Container"
+
+    <%- @data_sources.sort.each do |data_source, db| -%>
+        <Resource name="<%= data_source %>" auth="Container" 
+            type="javax.sql.DataSource" maxActive="100" 
+            maxIdle="30" 
+            maxWait="10000" 
+            username="<%= db['user'] %>" 
+            password="<%= db['password'] %>" 
+            driverClassName="<%= db['driver'] %>" 
+            url="<%= db['url'] + db['schema'] %>"/>
+    <%- end -%>
+
+
+    <!-- <Resource name="jdbc/web" auth="Container"
         type="javax.sql.DataSource" maxActive="100" maxIdle="30"
         maxWait="10000" username="<%= @db_user %>" password="<%= @db_password %>"
         driverClassName="com.mysql.jdbc.Driver"
@@ -41,7 +54,8 @@
         type="javax.sql.DataSource" maxActive="100" maxIdle="30"
         maxWait="10000" username="<%= @db_user %>" password="<%= @db_password %>"
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://<%= @db_host %>:3306/<%= @db_schema %>"/>
+        url="jdbc:mysql://<%= @db_host %>:3306/<%= @db_schema %>"/> -->
+
     <!-- Uncomment this to enable Comet connection tacking (provides events
          on session expiration as well as webapp lifecycle) -->
     <!--

@@ -93,12 +93,13 @@
                keystorePass="secret"
                clientAuth="false" sslProtocol="TLS" /> -->
 
-    <Connector port="8443" protocol="HTTP/1.1"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               keystoreFile="conf/.keystore"
-               keystorePass="secret"
-               clientAuth="false" sslProtocol="SSLv3" />
+     <%- @connectors.each do |c| -%>
+          <Connector 
+               <%= c.sort.map{|k,v| "#{k}='#{v}'"}.join(" ") %> />
+     <%- end -%>
     
+    <!-- DELETE THE LINE BELOW -->
+    <!-- port="8443" protocol="HTTP/1.1" maxThreads="150" SSLEnabled="true" scheme="https" secure="true" keystoreFile="conf/.keystore" keystorePass="secret" clientAuth="false" sslProtocol="SSLv3" /> -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <!--
