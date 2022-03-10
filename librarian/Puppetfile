@@ -2,7 +2,11 @@
 
 # mod "puppetlabsapt", "1.4.0"
 
-# forge "https://forgeapi.puppetlabs.com"
+forge "https://forgeapi.puppetlabs.com"
+# forge "https://forge.puppet.com"
+
+# mod "puppetlabs-apt", "1.4.0"
+# mod 'rtyler-jenkins', "1.0.0"
 
 # mod 'puppetlabs-apt',
 #   :git => "git://github.com/puppetlabs/puppetlabs-apt.git",
